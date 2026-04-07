@@ -101,6 +101,9 @@ interface Book {
 - ReadingCat: blinking eyes, swishing tail, page-turning, breathing motion
 - Book cards: hover lift and scale transitions
 
+## Testing
+- **Playwright MCP** — used for browser-based testing and visual verification of all pages, themes, and interactions. Connected via `@playwright/mcp` running in headless mode. Enables navigating pages, clicking elements, evaluating JavaScript, and taking screenshots to verify UI behavior across themes and view modes.
+
 ## Notes
 - `src/data/books.json` is the "database" — it should be committed to git
 - Cover images from arbitrary HTTPS URLs are allowed via `next.config.ts` remote patterns
