@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type ThemeName = "cozy" | "ocean" | "forest";
-type Mode = "light" | "dark";
 
 const themes: { name: ThemeName; label: string; icon: string; colors: [string, string] }[] = [
   { name: "cozy", label: "Cozy", icon: "🕯️", colors: ["#c48a4a", "#a0714a"] },
@@ -12,18 +11,16 @@ const themes: { name: ThemeName; label: string; icon: string; colors: [string, s
 ];
 
 export default function ThemePicker() {
-  const [activeTheme, setActiveTheme] = useState<ThemeName>("cozy");
-  const [dark, setDark] = useState(false);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
+  const [activeTheme, setActiveTheme] = useState<ThemeName>(() => {
+    if (typeof window === "undefined") return "cozy";
     const saved = localStorage.getItem("color-theme") as ThemeName | null;
-    const isDark = document.documentElement.classList.contains("dark");
-    if (saved && themes.some((t) => t.name === saved)) {
-      setActiveTheme(saved);
-    }
-    setDark(isDark);
-  }, []);
+    return saved && themes.some((t) => t.name === saved) ? saved : "cozy";
+  });
+  const [dark, setDark] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return document.documentElement.classList.contains("dark");
+  });
+  const [open, setOpen] = useState(false);
 
   function applyTheme(name: ThemeName) {
     const el = document.documentElement;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 
 interface SearchResult {
   title: string;
@@ -109,10 +110,13 @@ export default function BookSearch({ onSelect, inputClass }: BookSearchProps) {
                 className="w-full text-left px-4 py-3 hover:bg-warm-100 dark:hover:bg-warm-700 transition-colors flex items-center gap-3 first:rounded-t-xl last:rounded-b-xl"
               >
                 {r.coverId ? (
-                  <img
+                  <Image
                     src={`https://covers.openlibrary.org/b/id/${r.coverId}-S.jpg`}
                     alt=""
+                    width={32}
+                    height={48}
                     className="w-8 h-12 object-cover rounded flex-shrink-0"
+                    unoptimized
                   />
                 ) : (
                   <div className="w-8 h-12 bg-warm-200 dark:bg-warm-600 rounded flex-shrink-0" />

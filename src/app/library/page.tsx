@@ -15,15 +15,19 @@ export default function LibraryPage() {
   const [statusFilter, setStatusFilter] = useState<ReadingStatus | "all">("all");
   const [showForm, setShowForm] = useState(false);
 
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/books")
+      .then((res) => res.json())
+      .then((data) => { if (!cancelled) setBooks(data); });
+    return () => { cancelled = true; };
+  }, []);
+
   async function fetchBooks() {
     const res = await fetch("/api/books");
     const data = await res.json();
     setBooks(data);
   }
-
-  useEffect(() => {
-    fetchBooks();
-  }, []);
 
   const filteredBooks = useMemo(() => {
     return books.filter((book) => {
