@@ -251,6 +251,92 @@ main {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* ===========================
+   BOOKSHELF
+   =========================== */
+
+/* Wooden shelf plank */
+.shelf-plank {
+  height: 16px;
+  background: linear-gradient(
+    180deg,
+    var(--w400) 0%,
+    var(--w500) 40%,
+    var(--w600) 70%,
+    var(--w700) 100%
+  );
+  border-radius: 0 0 4px 4px;
+  box-shadow:
+    0 4px 8px -2px rgba(0, 0, 0, 0.25),
+    0 2px 4px -1px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+/* Wood grain texture on shelf */
+.shelf-plank::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.15;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 40px,
+    rgba(0, 0, 0, 0.08) 40px,
+    rgba(0, 0, 0, 0.08) 42px,
+    transparent 42px,
+    transparent 80px,
+    rgba(255, 255, 255, 0.05) 80px,
+    rgba(255, 255, 255, 0.05) 81px
+  );
+}
+
+/* Shelf bracket shadows */
+.shelf-plank::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Ocean theme shelf */
+.theme-ocean .shelf-plank {
+  background: linear-gradient(
+    180deg,
+    var(--w400) 0%,
+    var(--w500) 40%,
+    var(--w600) 70%,
+    var(--w700) 100%
+  );
+}
+
+/* Forest theme shelf — more bark-like */
+.theme-forest .shelf-plank {
+  background: linear-gradient(
+    180deg,
+    #6b5c3e 0%,
+    #5a4d35 40%,
+    #4a3f2c 70%,
+    #3a3123 100%
+  );
+}
+
+.theme-forest.dark .shelf-plank {
+  background: linear-gradient(
+    180deg,
+    #4a3f2c 0%,
+    #3a3123 40%,
+    #2e2619 70%,
+    #221c12 100%
+  );
+}
+
 /* Dialog backdrop */
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
