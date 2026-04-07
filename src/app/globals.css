@@ -201,6 +201,61 @@ body {
   border-radius: 1rem 1.5rem 1rem 1.5rem;
 }
 
+/* ===========================
+   ANIMATIONS
+   =========================== */
+
+/* Fade-in and slide up for main content */
+main {
+  animation: fadeSlideUp 0.5s ease-out;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered fade-in for grid children (book cards) */
+main > div > div > a,
+main > div > div > button {
+  animation: cardFadeIn 0.4s ease-out both;
+}
+
+main > div > div > a:nth-child(1),
+main > div > div > button:nth-child(1) { animation-delay: 0.05s; }
+main > div > div > a:nth-child(2),
+main > div > div > button:nth-child(2) { animation-delay: 0.1s; }
+main > div > div > a:nth-child(3),
+main > div > div > button:nth-child(3) { animation-delay: 0.15s; }
+main > div > div > a:nth-child(4),
+main > div > div > button:nth-child(4) { animation-delay: 0.2s; }
+main > div > div > a:nth-child(5),
+main > div > div > button:nth-child(5) { animation-delay: 0.25s; }
+main > div > div > a:nth-child(6),
+main > div > div > button:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Smooth hover lift for cards */
+[class*="shadow-md"]:hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 /* Dialog backdrop */
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);

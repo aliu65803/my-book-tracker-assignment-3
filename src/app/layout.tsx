@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Merriweather, Inter } from "next/font/google";
 import Nav from "@/components/Nav";
+import ReadingCat from "@/components/ReadingCat";
 import "./globals.css";
 
 const merriweather = Merriweather({
@@ -48,6 +49,7 @@ export default function RootLayout({
       <body className="min-h-full font-body antialiased">
         <Nav />
         {children}
+        <ReadingCat />
       </body>
     </html>
   );
