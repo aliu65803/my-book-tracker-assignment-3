@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-warm-50: #fdf8f0;
+  --color-warm-100: #f5e6d3;
+  --color-warm-200: #e8d0b3;
+  --color-warm-300: #d4a574;
+  --color-warm-400: #c48a4a;
+  --color-warm-500: #a0714a;
+  --color-warm-600: #7d5a3c;
+  --color-warm-700: #5c4030;
+  --color-warm-800: #3d2b20;
+  --color-warm-900: #2a1d15;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-heading: "Merriweather", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+:root {
+  --background: #fdf8f0;
+  --foreground: #2a1d15;
+}
+
+.dark {
+  --background: #2a1d15;
+  --foreground: #fdf8f0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dialog backdrop */
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}

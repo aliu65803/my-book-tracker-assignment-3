@@ -1,0 +1,42 @@
+[
+  {
+    "title": "City of Brass",
+    "author": "S.A. Chakraborty",
+    "isbn": "0062678108",
+    "status": "finished",
+    "rating": 5,
+    "dateFinished": "2026-04-02T23:25:08.768Z",
+    "id": "1780493d-97cb-41f4-ae68-f9fc65705b28",
+    "dateAdded": "2026-04-02T23:25:08.803Z",
+    "notes": "pretty good"
+  },
+  {
+    "title": "Kingdom of Copper",
+    "author": "S.A. Chakraborty",
+    "isbn": "0062678132",
+    "status": "finished",
+    "rating": 5,
+    "notes": "pretty good",
+    "dateFinished": "2026-04-02T23:27:07.471Z",
+    "id": "172bda64-5402-4ad1-9568-a3ee88014683",
+    "dateAdded": "2026-04-02T23:27:07.480Z"
+  },
+  {
+    "title": "Empire of Gold",
+    "author": "S.A. Chakraborty",
+    "isbn": "0062678167",
+    "status": "currently-reading",
+    "rating": 5,
+    "id": "37d4b9ff-bc4c-49e7-8d39-b9c8317bd005",
+    "dateAdded": "2026-04-02T23:31:05.542Z"
+  },
+  {
+    "title": "Clockwork Angel",
+    "author": "Cassandra Clare",
+    "isbn": "9781406393743",
+    "status": "want-to-read",
+    "id": "3bd73805-ae42-410e-8ff1-28d9532cc51e",
+    "dateAdded": "2026-04-02T23:47:30.927Z",
+    "rating": 5
+  }
+]
