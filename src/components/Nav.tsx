@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ThemeToggle from "./ThemeToggle";
+import ThemePicker from "./ThemePicker";
 
 const links = [
   { href: "/", label: "Dashboard" },
@@ -45,9 +45,9 @@ export default function Nav() {
           })}
         </ul>
 
-        {/* Theme Toggle */}
+        {/* Theme Picker */}
         <div className="shrink-0">
-          <ThemeToggle />
+          <ThemePicker />
         </div>
       </div>
     </nav>

@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-warm-50: #fdf8f0;
-  --color-warm-100: #f5e6d3;
-  --color-warm-200: #e8d0b3;
-  --color-warm-300: #d4a574;
-  --color-warm-400: #c48a4a;
-  --color-warm-500: #a0714a;
-  --color-warm-600: #7d5a3c;
-  --color-warm-700: #5c4030;
-  --color-warm-800: #3d2b20;
-  --color-warm-900: #2a1d15;
+  /* Colors reference CSS variables so themes can override at runtime */
+  --color-warm-50: var(--w50);
+  --color-warm-100: var(--w100);
+  --color-warm-200: var(--w200);
+  --color-warm-300: var(--w300);
+  --color-warm-400: var(--w400);
+  --color-warm-500: var(--w500);
+  --color-warm-600: var(--w600);
+  --color-warm-700: var(--w700);
+  --color-warm-800: var(--w800);
+  --color-warm-900: var(--w900);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -19,7 +20,20 @@
   --font-body: "Inter", sans-serif;
 }
 
+/* ===========================
+   THEME: COZY (default)
+   =========================== */
 :root {
+  --w50: #fdf8f0;
+  --w100: #f5e6d3;
+  --w200: #e8d0b3;
+  --w300: #d4a574;
+  --w400: #c48a4a;
+  --w500: #a0714a;
+  --w600: #7d5a3c;
+  --w700: #5c4030;
+  --w800: #3d2b20;
+  --w900: #2a1d15;
   --background: #fdf8f0;
   --foreground: #2a1d15;
 }
@@ -29,11 +43,162 @@
   --foreground: #fdf8f0;
 }
 
+/* ===========================
+   THEME: OCEAN
+   =========================== */
+.theme-ocean {
+  --w50: #f0f7ff;
+  --w100: #d4e9f7;
+  --w200: #a8d4ef;
+  --w300: #5fb4db;
+  --w400: #2e94c2;
+  --w500: #1a7aaa;
+  --w600: #146088;
+  --w700: #104866;
+  --w800: #0c3048;
+  --w900: #081e30;
+  --background: #f0f7ff;
+  --foreground: #081e30;
+}
+
+.theme-ocean.dark {
+  --background: #081e30;
+  --foreground: #f0f7ff;
+}
+
+/* ===========================
+   THEME: FOREST
+   =========================== */
+.theme-forest {
+  --w50: #f2f7f0;
+  --w100: #ddebd5;
+  --w200: #b8d6a8;
+  --w300: #7db868;
+  --w400: #569743;
+  --w500: #3f7a31;
+  --w600: #316127;
+  --w700: #25491e;
+  --w800: #1a3215;
+  --w900: #10200d;
+  --background: #f2f7f0;
+  --foreground: #10200d;
+}
+
+.theme-forest.dark {
+  --background: #10200d;
+  --foreground: #f2f7f0;
+}
+
+/* ===========================
+   BASE STYLES
+   =========================== */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.4s, color 0.4s;
+  position: relative;
+}
+
+/* ===========================
+   OCEAN — decorative effects
+   =========================== */
+
+/* Subtle ambient glow */
+.theme-ocean body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.07;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 80%, #2e94c2 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, #5fb4db 0%, transparent 70%);
+}
+
+.theme-ocean.dark body::before {
+  opacity: 0.12;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 80%, #1a7aaa 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, #2e94c2 0%, transparent 70%);
+}
+
+/* Gradient border on nav */
+.theme-ocean nav {
+  border-image: linear-gradient(90deg, #a8d4ef, #2e94c2, #5fb4db, #a8d4ef) 1;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+}
+
+/* Wave decoration at bottom of main content */
+.theme-ocean main::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 80px;
+  margin-top: 2rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%232e94c2' fill-opacity='0.08' d='M0,64L48,58.7C96,53,192,43,288,48C384,53,480,75,576,80C672,85,768,75,864,64C960,53,1056,43,1152,48C1248,53,1344,75,1392,85.3L1440,96L1440,120L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
+  background-size: 100% 80px;
+}
+
+.theme-ocean.dark main::after {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%231a7aaa' fill-opacity='0.15' d='M0,64L48,58.7C96,53,192,43,288,48C384,53,480,75,576,80C672,85,768,75,864,64C960,53,1056,43,1152,48C1248,53,1344,75,1392,85.3L1440,96L1440,120L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
+  background-size: 100% 80px;
+}
+
+/* ===========================
+   FOREST — decorative effects
+   =========================== */
+
+/* Dappled light effect */
+.theme-forest body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.06;
+  background:
+    radial-gradient(circle 300px at 15% 25%, #7db868 0%, transparent 70%),
+    radial-gradient(circle 250px at 75% 60%, #569743 0%, transparent 70%),
+    radial-gradient(circle 200px at 50% 90%, #b8d6a8 0%, transparent 70%);
+}
+
+.theme-forest.dark body::before {
+  opacity: 0.1;
+  background:
+    radial-gradient(circle 300px at 15% 25%, #3f7a31 0%, transparent 70%),
+    radial-gradient(circle 250px at 75% 60%, #25491e 0%, transparent 70%),
+    radial-gradient(circle 200px at 50% 90%, #569743 0%, transparent 70%);
+}
+
+/* Earthy gradient border on nav */
+.theme-forest nav {
+  border-image: linear-gradient(90deg, #b8d6a8, #569743, #7db868, #b8d6a8) 1;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+}
+
+/* Layered hills at bottom of main */
+.theme-forest main::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 80px;
+  margin-top: 2rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%23569743' fill-opacity='0.07' d='M0,96L60,85.3C120,75,240,53,360,53.3C480,53,600,75,720,80C840,85,960,75,1080,64C1200,53,1320,43,1380,37.3L1440,32L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z'/%3E%3Cpath fill='%237db868' fill-opacity='0.05' d='M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90.7L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
+  background-size: 100% 80px;
+}
+
+.theme-forest.dark main::after {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%233f7a31' fill-opacity='0.12' d='M0,96L60,85.3C120,75,240,53,360,53.3C480,53,600,75,720,80C840,85,960,75,1080,64C1200,53,1320,43,1380,37.3L1440,32L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z'/%3E%3Cpath fill='%2325491e' fill-opacity='0.08' d='M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90.7L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
+  background-size: 100% 80px;
+}
+
+/* Organic border radius for forest */
+.theme-forest [class*="rounded-2xl"] {
+  border-radius: 1rem 1.5rem 1rem 1.5rem;
 }
 
 /* Dialog backdrop */
