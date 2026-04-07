@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 space-y-10">
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 stagger-in">
         {/* Total Books */}
         <div className="bg-warm-100 dark:bg-warm-800 rounded-2xl shadow-md p-5 flex items-center gap-4">
           <div className="bg-warm-300 dark:bg-warm-600 rounded-xl p-3 shrink-0">
@@ -186,7 +186,7 @@ export default function Home() {
             </Link>
           </div>
         ) : (
-          <div className="flex gap-4 overflow-x-auto pb-2">
+          <div className="flex gap-4 overflow-x-auto pb-2 stagger-in">
             {currentlyReading.map((book) => (
               <Link
                 key={book.id}
@@ -236,7 +236,7 @@ export default function Home() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 stagger-in">
             {recentlyAdded.map((book) => (
               <Link
                 key={book.id}
