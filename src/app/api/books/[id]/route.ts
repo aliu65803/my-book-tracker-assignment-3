@@ -1,12 +1,18 @@
 import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
 import { getBookById, updateBook, deleteBook } from "@/lib/books";
 
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const { userId } = await auth();
+  if (!userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const { id } = await params;
-  const book = await getBookById(id);
+  const book = await getBookById(id, userId);
   if (!book) {
     return NextResponse.json({ error: "Book not found" }, { status: 404 });
   }
@@ -17,9 +23,14 @@ export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const { userId } = await auth();
+  if (!userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const { id } = await params;
   const body = await request.json();
-  const updated = await updateBook(id, body);
+  const updated = await updateBook(id, body, userId);
   if (!updated) {
     return NextResponse.json({ error: "Book not found" }, { status: 404 });
   }
@@ -30,8 +41,13 @@ export async function DELETE(
   _request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const { userId } = await auth();
+  if (!userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const { id } = await params;
-  const deleted = await deleteBook(id);
+  const deleted = await deleteBook(id, userId);
   if (!deleted) {
     return NextResponse.json({ error: "Book not found" }, { status: 404 });
   }

@@ -1,12 +1,83 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
 import { Book } from "@/lib/types";
 import { getCoverUrl } from "@/lib/covers";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Home() {
+function LandingPage() {
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-16 text-center space-y-12">
+      {/* Hero */}
+      <div className="space-y-6">
+        <h1 className="text-4xl sm:text-5xl font-heading font-bold text-warm-900 dark:text-warm-50">
+          Track Your Reading Journey
+        </h1>
+        <p className="text-lg sm:text-xl text-warm-600 dark:text-warm-300 max-w-2xl mx-auto">
+          Keep track of the books you&apos;re reading, want to read, and have finished.
+          Rate, review, and organize your personal library.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <Link
+            href="/sign-up"
+            className="inline-flex items-center gap-2 bg-warm-600 hover:bg-warm-700 text-warm-50 font-heading font-bold px-8 py-3 rounded-2xl shadow-md hover:shadow-lg transition-all text-lg"
+          >
+            Get Started
+          </Link>
+          <Link
+            href="/sign-in"
+            className="inline-flex items-center gap-2 border-2 border-warm-400 dark:border-warm-600 text-warm-700 dark:text-warm-200 hover:bg-warm-100 dark:hover:bg-warm-800 font-heading font-bold px-8 py-3 rounded-2xl shadow-md hover:shadow-lg transition-all text-lg"
+          >
+            Sign In
+          </Link>
+        </div>
+      </div>
+
+      {/* Features */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 stagger-in">
+        <div className="bg-warm-100 dark:bg-warm-800 rounded-2xl shadow-md p-6 space-y-3">
+          <div className="bg-warm-300 dark:bg-warm-600 rounded-xl p-3 w-fit mx-auto">
+            <svg className="w-7 h-7 text-warm-800 dark:text-warm-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <h3 className="font-heading font-bold text-warm-900 dark:text-warm-50">Organize Your Books</h3>
+          <p className="text-sm text-warm-600 dark:text-warm-300">
+            Track what you&apos;re reading, what&apos;s on your list, and what you&apos;ve finished.
+          </p>
+        </div>
+
+        <div className="bg-warm-100 dark:bg-warm-800 rounded-2xl shadow-md p-6 space-y-3">
+          <div className="bg-warm-300 dark:bg-warm-600 rounded-xl p-3 w-fit mx-auto">
+            <svg className="w-7 h-7 text-warm-800 dark:text-warm-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+            </svg>
+          </div>
+          <h3 className="font-heading font-bold text-warm-900 dark:text-warm-50">Rate & Review</h3>
+          <p className="text-sm text-warm-600 dark:text-warm-300">
+            Give star ratings and add personal notes to remember your thoughts.
+          </p>
+        </div>
+
+        <div className="bg-warm-100 dark:bg-warm-800 rounded-2xl shadow-md p-6 space-y-3">
+          <div className="bg-warm-300 dark:bg-warm-600 rounded-xl p-3 w-fit mx-auto">
+            <svg className="w-7 h-7 text-warm-800 dark:text-warm-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          <h3 className="font-heading font-bold text-warm-900 dark:text-warm-50">Reading Stats</h3>
+          <p className="text-sm text-warm-600 dark:text-warm-300">
+            See your reading habits with stats on authors, ratings, and more.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Dashboard() {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -326,4 +397,20 @@ export default function Home() {
       </section>
     </div>
   );
+}
+
+export default function Home() {
+  const { isSignedIn, isLoaded } = useUser();
+
+  if (!isLoaded) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="animate-pulse text-warm-500 text-lg font-heading">
+          Loading...
+        </div>
+      </div>
+    );
+  }
+
+  return isSignedIn ? <Dashboard /> : <LandingPage />;
 }
