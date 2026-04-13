@@ -37,6 +37,15 @@
     "status": "want-to-read",
     "id": "3bd73805-ae42-410e-8ff1-28d9532cc51e",
     "dateAdded": "2026-04-02T23:47:30.927Z",
-    "rating": 5
+    "rating": 5,
+    "notes": "Some of the covers are unable to be retrieved."
+  },
+  {
+    "title": "Invisible City",
+    "author": "M. G. Harris",
+    "isbn": "9780606150026",
+    "status": "want-to-read",
+    "id": "7351f74d-b3c2-4054-a248-983f60571122",
+    "dateAdded": "2026-04-07T23:04:03.879Z"
   }
 ]
