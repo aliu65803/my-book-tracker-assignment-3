@@ -1,4 +1,4 @@
-import { supabase } from "./supabase";
+import { getSupabase } from "./supabase";
 import { Book, BookInput } from "./types";
 
 interface DbBook {
@@ -31,7 +31,7 @@ function toBook(row: DbBook): Book {
 }
 
 export async function getAllBooks(userId: string): Promise<Book[]> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from("books")
     .select("*")
     .eq("user_id", userId)
@@ -45,7 +45,7 @@ export async function getBookById(
   id: string,
   userId: string
 ): Promise<Book | undefined> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from("books")
     .select("*")
     .eq("id", id)
@@ -60,7 +60,7 @@ export async function addBook(
   input: BookInput,
   userId: string
 ): Promise<Book> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from("books")
     .insert({
       user_id: userId,
@@ -95,7 +95,7 @@ export async function updateBook(
   if (updates.notes !== undefined) dbUpdates.notes = updates.notes || null;
   if (updates.dateFinished !== undefined) dbUpdates.date_finished = updates.dateFinished || null;
 
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from("books")
     .update(dbUpdates)
     .eq("id", id)
@@ -111,7 +111,7 @@ export async function deleteBook(
   id: string,
   userId: string
 ): Promise<boolean> {
-  const { error, count } = await supabase
+  const { error, count } = await getSupabase()
     .from("books")
     .delete({ count: "exact" })
     .eq("id", id)
